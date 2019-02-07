@@ -5,47 +5,45 @@
 }
 
 body {
+  margin-top: 50px;
+  display: flex;
   background: black;
-  height: 100vh;
-}
-
-img {
-  width: 95px;
 }
 
 .container {
   width: 640px;
   height: 640px;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
-  margin: auto;
-  margin-top: 20px;
-  transform: scale(1);
 }
 
-.cards {
+.deck {
   width: 25%;
   height: 33.333%;
   position: relative;
+  transition: all .2s;
+  transform-style: preserve-3d;
   transform: scale(1);
 }
 
-.cards:active {
-  transform: scale(.97);
+.deck.flip {
+  transform: rotateX(180deg);
+}
+.frontCard {
+  transform: rotateX(180deg);
+}
+
+.deck:active {
+  transform: scale(0.97);
   transition: transform .2s;
 }
 
-.cards.flipped {
-  transform: rotateY(180deg);
-}
-
-
 .frontCard, .backCard {
-  position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
   padding: 5px;
+  position: absolute;
   backface-visibility: hidden;
+  border-radius: 2px;
 }

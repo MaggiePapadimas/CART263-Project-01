@@ -7,21 +7,13 @@ let cardsChosen = false;
 //for matching the pairs
 let card01, card02;
 
-let matchSound;
+let matchSoundSFX = new Audio ("assets/sounds/winSound.mp3");
 
-function preload (){
-  matchSound = new audio ("assets/sounds/match.mp3");
-}
-
+let counter = 0;
 //setting random poistion. and adds listener for clicks
 for(let i = 0; i < cards.length; i+=1 ){
     cards[i].style.order = Math.ceil(Math.random() * 12);
     cards[i].addEventListener('click', check);
-}
-
-function sound(){
-  matchSound.currentTime = 0;
-  matchSound.play();
 }
 
 //reflips cards
@@ -55,8 +47,14 @@ function check() {
   cardsChosen = true;
 
   if(card01.dataset.name === card02.dataset.name){
+    matchSoundSFX.play();
+    counter ++;
     flipCards();
-    sound();
+    if (counter == 6){
+      for(let i = 0; i < cards.length; i+=1 ){
+          cards[i].classList.remove('flip');
+      }
+    }
   }
   else {
     setTimeout(unflipTimer, 1000);
